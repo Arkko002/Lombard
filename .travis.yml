@@ -4,12 +4,6 @@ sudo: required
 dist: xenial
 dotnet: 2.2
 script:
+ - dotnet restore
  - dotnet build
- 
-solution: Lombard.sln
-install:
-  - nuget restore Lombard.sln
-  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
-script:
-  - msbuild /p:Configuration=Release Lombard.sln
-  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./MyProject.Tests/bin/Release/Lombard.Tests.dll
+ - dotnet test
